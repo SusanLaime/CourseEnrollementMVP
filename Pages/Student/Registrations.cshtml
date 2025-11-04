@@ -1,0 +1,27 @@
+@page
+@model CourseEnrollmentMVP.Pages.Student.RegistrationsModel
+<h2>My Registrations</h2>
+
+@if (!Model.Grouped.Any())
+{
+    <p>You have no registrations.</p>
+}
+else
+{
+    @foreach (var group in Model.Grouped)
+    {
+        <h3>@group.CourseTitle</h3>
+        <ul>
+        @foreach (var item in group.Enrollments)
+        {
+            <li>
+                Applied: @item.AppliedAt.ToLocalTime() - Status: @item.Status
+                @if (item.DecidedAt.HasValue)
+                {
+                    <span> (Decided: @item.DecidedAt.Value.ToLocalTime())</span>
+                }
+            </li>
+        }
+        </ul>
+    }
+}

@@ -83,6 +83,7 @@ public class CoursesModel : PageModel
         await _db.SaveChangesAsync();
 
         TempData["Success"] = "Registration submitted!";
-        return RedirectToPage();
+        // After registration, show the student's registrations grouped by subject
+        return RedirectToPage("/Student/Registrations");
     }
 }
