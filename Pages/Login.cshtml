@@ -1,0 +1,18 @@
+@page
+@model LoginModel
+<h2>Login</h2>
+<form method="post">
+    <div>
+        <label>Email:</label>
+        <input type="email" asp-for="Email" value="student@edu.com" />
+    </div>
+    <div>
+        <label>Password:</label>
+        <input type="password" asp-for="Password" value="pass123" />
+    </div>
+    @if (Model.Error != null)
+    {
+        <p style="color:red">@Model.Error</p>
+    }
+    <button type="submit">Login</button>
+</form>
