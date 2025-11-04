@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\UPB\\UPB 4th semester\\Software Engineering\\CourseEnrollmentMVP\\CourseEnrollmentMVP.csproj": {}
+    "d:\\UPB\\UPB 4th semester\\Software Engineering\\CourseEnrollmentMVP\\CourseEnrollmentMVP.csproj": {}
   },
   "projects": {
-    "D:\\UPB\\UPB 4th semester\\Software Engineering\\CourseEnrollmentMVP\\CourseEnrollmentMVP.csproj": {
+    "d:\\UPB\\UPB 4th semester\\Software Engineering\\CourseEnrollmentMVP\\CourseEnrollmentMVP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\UPB\\UPB 4th semester\\Software Engineering\\CourseEnrollmentMVP\\CourseEnrollmentMVP.csproj",
+        "projectUniqueName": "d:\\UPB\\UPB 4th semester\\Software Engineering\\CourseEnrollmentMVP\\CourseEnrollmentMVP.csproj",
         "projectName": "CourseEnrollmentMVP",
-        "projectPath": "D:\\UPB\\UPB 4th semester\\Software Engineering\\CourseEnrollmentMVP\\CourseEnrollmentMVP.csproj",
+        "projectPath": "d:\\UPB\\UPB 4th semester\\Software Engineering\\CourseEnrollmentMVP\\CourseEnrollmentMVP.csproj",
         "packagesPath": "C:\\Users\\SUSAN\\.nuget\\packages\\",
-        "outputPath": "D:\\UPB\\UPB 4th semester\\Software Engineering\\CourseEnrollmentMVP\\obj\\",
+        "outputPath": "d:\\UPB\\UPB 4th semester\\Software Engineering\\CourseEnrollmentMVP\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\SUSAN\\AppData\\Roaming\\NuGet\\NuGet.Config"

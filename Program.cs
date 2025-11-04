@@ -62,8 +62,8 @@ using (var scope = app.Services.CreateScope())
         db.Users.AddRange(student, director);
 
         db.Courses.AddRange(
-            new Course { Title = "AI 101", Description = "Intro to AI", Capacity = 30, Enrolled = 0 },
-            new Course { Title = "Web Dev", Description = "HTML/CSS/JS", Capacity = 25, Enrolled = 0 }
+            new Course { Title = "AI 101", Description = "Intro to AI", Capacity = 30, Enrolled = 0, MajorsAllowed = "ISC,ECO", Semester = "Fall 2025" },
+            new Course { Title = "Web Dev", Description = "HTML/CSS/JS", Capacity = 25, Enrolled = 0, MajorsAllowed = "ISC", Semester = "Spring 2026" }
         );
 
         db.SaveChanges();

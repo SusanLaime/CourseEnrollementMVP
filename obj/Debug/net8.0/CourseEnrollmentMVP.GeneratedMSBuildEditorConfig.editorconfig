@@ -17,51 +17,51 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CourseEnrollmentMVP
 build_property.RootNamespace = CourseEnrollmentMVP
-build_property.ProjectDir = D:\UPB\UPB 4th semester\Software Engineering\CourseEnrollmentMVP\
+build_property.ProjectDir = d:\UPB\UPB 4th semester\Software Engineering\CourseEnrollmentMVP\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\UPB\UPB 4th semester\Software Engineering\CourseEnrollmentMVP
+build_property.MSBuildProjectDirectory = d:\UPB\UPB 4th semester\Software Engineering\CourseEnrollmentMVP
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/UPB/UPB 4th semester/Software Engineering/CourseEnrollmentMVP/Pages/Director/Dashboard.cshtml]
+[d:/UPB/UPB 4th semester/Software Engineering/CourseEnrollmentMVP/Pages/Director/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGlyZWN0b3JcRGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/UPB/UPB 4th semester/Software Engineering/CourseEnrollmentMVP/Pages/Error.cshtml]
+[d:/UPB/UPB 4th semester/Software Engineering/CourseEnrollmentMVP/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/UPB/UPB 4th semester/Software Engineering/CourseEnrollmentMVP/Pages/Index.cshtml]
+[d:/UPB/UPB 4th semester/Software Engineering/CourseEnrollmentMVP/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/UPB/UPB 4th semester/Software Engineering/CourseEnrollmentMVP/Pages/Login.cshtml]
+[d:/UPB/UPB 4th semester/Software Engineering/CourseEnrollmentMVP/Pages/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/UPB/UPB 4th semester/Software Engineering/CourseEnrollmentMVP/Pages/Privacy.cshtml]
+[d:/UPB/UPB 4th semester/Software Engineering/CourseEnrollmentMVP/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/UPB/UPB 4th semester/Software Engineering/CourseEnrollmentMVP/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[d:/UPB/UPB 4th semester/Software Engineering/CourseEnrollmentMVP/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/UPB/UPB 4th semester/Software Engineering/CourseEnrollmentMVP/Pages/Student/Courses.cshtml]
+[d:/UPB/UPB 4th semester/Software Engineering/CourseEnrollmentMVP/Pages/Student/Courses.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudFxDb3Vyc2VzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/UPB/UPB 4th semester/Software Engineering/CourseEnrollmentMVP/Pages/_ViewImports.cshtml]
+[d:/UPB/UPB 4th semester/Software Engineering/CourseEnrollmentMVP/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/UPB/UPB 4th semester/Software Engineering/CourseEnrollmentMVP/Pages/_ViewStart.cshtml]
+[d:/UPB/UPB 4th semester/Software Engineering/CourseEnrollmentMVP/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/UPB/UPB 4th semester/Software Engineering/CourseEnrollmentMVP/Pages/Shared/_Layout.cshtml]
+[d:/UPB/UPB 4th semester/Software Engineering/CourseEnrollmentMVP/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-02isbq0zsa

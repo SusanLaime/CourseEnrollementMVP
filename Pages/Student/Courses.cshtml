@@ -2,20 +2,43 @@
 @model CourseEnrollmentMVP.Pages.Student.CoursesModel
 <h2>Available Courses</h2>
 
+<form method="get" class="mb-3">
+	<label for="major">Major:</label>
+	<select id="major" name="SelectedMajor" class="form-select" style="width:200px; display:inline-block; margin-right:10px;">
+		<option value="">All</option>
+		@foreach (var m in Model.Majors)
+		{
+			<option selected="@(Model.SelectedMajor == m)" value="@m">@m</option>
+		}
+	</select>
+
+	<label for="semester">Semester:</label>
+	<select id="semester" name="SelectedSemester" class="form-select" style="width:200px; display:inline-block; margin-right:10px;">
+		<option value="">Any</option>
+		@foreach (var s in Model.Semesters)
+		{
+			<option selected="@(Model.SelectedSemester == s)" value="@s">@s</option>
+		}
+	</select>
+
+	<button class="btn btn-secondary" type="submit">Filter</button>
+</form>
+
 @if (TempData["Success"] != null)
 {
-    <p style="color:green">@TempData["Success"]</p>
+	<p style="color:green">@TempData["Success"]</p>
 }
 
 @foreach (var course in Model.Courses)
 {
-    <div style="border:1px solid #ccc; margin:10px; padding:10px;">
-        <h3>@course.Title</h3>
-        <p>@course.Description</p>
-        <p>Seats: @course.Enrolled / @course.Capacity</p>
-        <form method="post" asp-page-handler="Register">
-            <input type="hidden" name="courseId" value="@course.Id" />
-            <button type="submit">Register</button>
-        </form>
-    </div>
+	<div style="border:1px solid #ccc; margin:10px; padding:10px;">
+		<h3>@course.Title (@course.Semester)</h3>
+		<p>@course.Description</p>
+		<p>Majors: @course.MajorsAllowed</p>
+		<p>Seats: @course.Enrolled / @course.Capacity</p>
+		<form method="post" asp-page-handler="Register">
+			<input type="hidden" name="courseId" value="@course.Id" />
+			<button type="submit">Register</button>
+		</form>
+	</div>
 }
