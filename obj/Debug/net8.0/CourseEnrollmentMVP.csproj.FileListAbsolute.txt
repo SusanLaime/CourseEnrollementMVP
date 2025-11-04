@@ -162,3 +162,4 @@ D:\UPB\UPB 4th semester\Software Engineering\CourseEnrollmentMVP\bin\Debug\net8.
 D:\UPB\UPB 4th semester\Software Engineering\CourseEnrollmentMVP\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 D:\UPB\UPB 4th semester\Software Engineering\CourseEnrollmentMVP\obj\Debug\net8.0\CourseEnrollmentMVP.csproj.AssemblyReference.cache
 D:\UPB\UPB 4th semester\Software Engineering\CourseEnrollmentMVP\obj\Debug\net8.0\CourseEn.DAA6D404.Up2Date
+D:\UPB\UPB 4th semester\Software Engineering\CourseEnrollmentMVP\obj\Debug\net8.0\CourseEnrollmentMVP.sourcelink.json
