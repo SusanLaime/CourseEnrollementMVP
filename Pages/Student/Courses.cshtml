@@ -1,4 +1,21 @@
 @page
 @model CourseEnrollmentMVP.Pages.Student.CoursesModel
-<h2>Student Courses</h2>
-<p>List of courses will appear here (placeholder).</p>
+<h2>Available Courses</h2>
+
+@if (TempData["Success"] != null)
+{
+    <p style="color:green">@TempData["Success"]</p>
+}
+
+@foreach (var course in Model.Courses)
+{
+    <div style="border:1px solid #ccc; margin:10px; padding:10px;">
+        <h3>@course.Title</h3>
+        <p>@course.Description</p>
+        <p>Seats: @course.Enrolled / @course.Capacity</p>
+        <form method="post" asp-page-handler="Register">
+            <input type="hidden" name="courseId" value="@course.Id" />
+            <button type="submit">Register</button>
+        </form>
+    </div>
+}
