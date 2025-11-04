@@ -26,6 +26,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\UPB\UPB 4th semester\Software Engineering\CourseEnrollmentMVP
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/UPB/UPB 4th semester/Software Engineering/CourseEnrollmentMVP/Pages/Admin/SentEmails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cU2VudEVtYWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/UPB/UPB 4th semester/Software Engineering/CourseEnrollmentMVP/Pages/Director/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGlyZWN0b3JcRGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

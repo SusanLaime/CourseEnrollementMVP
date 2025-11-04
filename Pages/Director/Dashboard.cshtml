@@ -1,26 +1,32 @@
 @page
-@model DashboardModel
-<!-- Pages/Director/Dashboard.cshtml -->
-<h2>Pending Enrollments</h2>
+@model CourseEnrollmentMVP.Pages.Director.DashboardModel
+<h2>Director Dashboard</h2>
+
+<p>
+	<a class="btn btn-outline-primary" asp-page="/Admin/SentEmails">View sent emails</a>
+</p>
+
+<h3>Pending Enrollments</h3>
 
 @if (!Model.Pending.Any())
 {
+	<p>No pending requests.</p>
 }
 else
 {
-    foreach (var p in Model.Pending)
-    {
-        <div style="border:1px solid #aaa; margin:10px; padding:10px;">
-            <p><strong>@p.StudentName</strong> wants to join <strong>@p.CourseTitle</strong></p>
-            <p>Applied: @p.AppliedAt</p>
-            <form method="post" asp-page-handler="Approve" style="display:inline">
-                <input type="hidden" name="id" value="@p.Id" />
-                <button type="submit" style="background:green;color:white">Approve</button>
-            </form>
-            <form method="post" asp-page-handler="Deny" style="display:inline">
-                <input type="hidden" name="id" value="@p.Id" />
-                <button type="submit" style="background:red;color:white">Deny</button>
-            </form>
-        </div>
-    }
+	foreach (var p in Model.Pending)
+	{
+		<div style="border:1px solid #aaa; margin:10px; padding:10px;">
+			<p><strong>@p.StudentName</strong> wants to join <strong>@p.CourseTitle</strong></p>
+			<p>Applied: @p.AppliedAt.ToLocalTime()</p>
+			<form method="post" asp-page-handler="Approve" style="display:inline">
+				<input type="hidden" name="enrollmentId" value="@p.EnrollmentId" />
+				<button type="submit" class="btn btn-success">Approve</button>
+			</form>
+			<form method="post" asp-page-handler="Deny" style="display:inline; margin-left:6px;">
+				<input type="hidden" name="enrollmentId" value="@p.EnrollmentId" />
+				<button type="submit" class="btn btn-danger">Deny</button>
+			</form>
+		</div>
+	}
 }

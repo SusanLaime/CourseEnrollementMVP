@@ -1,0 +1,41 @@
+@page
+@model CourseEnrollmentMVP.Pages.Admin.SentEmailsModel
+<h2>Sent Emails</h2>
+
+@if (!Model.Emails.Any())
+{
+    <p>No sent emails recorded.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr><th>When (UTC)</th><th>To</th><th>Subject</th><th>Body (preview)</th></tr>
+        </thead>
+        <tbody>
+        @foreach (var e in Model.Emails)
+        {
+            <tr>
+                <td>@e.Timestamp.ToString("u")</td>
+                <td>@e.To</td>
+                <td>@e.Subject</td>
+                <td>@(e.Body?.Length > 200 ? e.Body.Substring(0,200) + "..." : e.Body)</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+<h3>Send test email</h3>
+<form method="post" class="mb-3">
+    <label for="to">To:</label>
+    <input id="to" name="to" class="form-control" style="width:300px; display:inline-block; margin-right:8px;" />
+    <input type="hidden" name="subject" value="Test email from CourseEnrollmentMVP" />
+    <input type="hidden" name="body" value="This is a test email to prove SendGrid integration." />
+    <button class="btn btn-primary" type="submit">Send test</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <div class="alert alert-info">@Model.Message</div>
+}

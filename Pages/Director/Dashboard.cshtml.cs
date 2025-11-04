@@ -1,11 +1,9 @@
-// Pages/Director/Dashboard.cshtml.cs
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using CourseEnrollmentMVP.Data;
-using System.Threading.Tasks;
-using System.Linq;
-using System.Collections.Generic;
+using CourseEnrollmentMVP.Data.Models;
+using CourseEnrollmentMVP.Services;
 
 namespace CourseEnrollmentMVP.Pages.Director;
 
@@ -13,48 +11,82 @@ namespace CourseEnrollmentMVP.Pages.Director;
 public class DashboardModel : PageModel
 {
     private readonly AppDbContext _db;
-    public List<dynamic> Pending { get; set; } = new();
+    private readonly IEmailSender _email;
 
-    public DashboardModel(AppDbContext db) => _db = db;
+    public DashboardModel(AppDbContext db, IEmailSender email)
+    {
+        _db = db;
+        _email = email;
+    }
+
+    public class PendingView
+    {
+        public int EnrollmentId { get; set; }
+        public string StudentName { get; set; } = "";
+        public string CourseTitle { get; set; } = "";
+        public DateTime AppliedAt { get; set; }
+    }
+
+    public List<PendingView> Pending { get; set; } = new();
 
     public void OnGet()
     {
-        Pending = _db.Enrollments
-            .Where(e => e.Status == "PENDING")
+        Pending = _db.Enrollments.Where(e => e.Status == "PENDING")
             .Join(_db.Users, e => e.StudentId, u => u.Id, (e, u) => new { e, u })
-            .Join(_db.Courses, x => x.e.CourseId, c => c.Id, (x, c) => new
+            .Join(_db.Courses, x => x.e.CourseId, c => c.Id, (x, c) => new PendingView
             {
-                x.e.Id,
+                EnrollmentId = x.e.Id,
                 StudentName = x.u.Name,
                 CourseTitle = c.Title,
                 AppliedAt = x.e.AppliedAt
             })
-            .ToList<dynamic>();
+            .ToList();
     }
 
-    public async Task<IActionResult> OnPostApproveAsync(int id)
+    public async Task<IActionResult> OnPostApprove(int enrollmentId)
     {
-        var e = _db.Enrollments.Find(id);
-        if (e != null)
+        var e = _db.Enrollments.Find(enrollmentId);
+        if (e == null) return RedirectToPage();
+
+        var course = _db.Courses.Find(e.CourseId);
+        var student = _db.Users.Find(e.StudentId);
+        if (course != null && student != null)
         {
+            if (course.Enrolled >= course.Capacity)
+            {
+                e.Status = "DENIED";
+                e.DecidedAt = DateTime.UtcNow;
+                await _db.SaveChangesAsync();
+                await _email.SendEmailAsync(student.Email, "Enrollment Denied - Full", $"Your enrollment for {course.Title} was denied because the course is full.");
+                return RedirectToPage();
+            }
+
             e.Status = "APPROVED";
             e.DecidedAt = DateTime.UtcNow;
-            var course = _db.Courses.Find(e.CourseId);
-            if (course != null) course.Enrolled++;
+            course.Enrolled += 1;
             await _db.SaveChangesAsync();
+
+            await _email.SendEmailAsync(student.Email, "Enrollment Approved", $"Your enrollment for {course.Title} was approved.");
         }
+
         return RedirectToPage();
     }
 
-    public async Task<IActionResult> OnPostDenyAsync(int id)
+    public async Task<IActionResult> OnPostDeny(int enrollmentId)
     {
-        var e = _db.Enrollments.Find(id);
-        if (e != null)
-        {
-            e.Status = "DENIED";
-            e.DecidedAt = DateTime.UtcNow;
-            await _db.SaveChangesAsync();
-        }
+        var e = _db.Enrollments.Find(enrollmentId);
+        if (e == null) return RedirectToPage();
+
+        var course = _db.Courses.Find(e.CourseId);
+        var student = _db.Users.Find(e.StudentId);
+
+        e.Status = "DENIED";
+        e.DecidedAt = DateTime.UtcNow;
+        await _db.SaveChangesAsync();
+
+        if (student != null)
+            await _email.SendEmailAsync(student.Email, "Enrollment Denied", $"Your enrollment for {course?.Title ?? "a course"} was denied.");
+
         return RedirectToPage();
     }
 }

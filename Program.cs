@@ -2,11 +2,30 @@
 using Microsoft.EntityFrameworkCore;
 using CourseEnrollmentMVP.Data;
 using CourseEnrollmentMVP.Data.Models;
+using CourseEnrollmentMVP.Services;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services
 builder.Services.AddRazorPages();
+// Register a development email sender (logs emails to console). Replace with SMTP in production.
+// Sent-email store (logs messages to a file for proof) and email sender
+builder.Services.AddSingleton<CourseEnrollmentMVP.Services.ISentEmailStore, CourseEnrollmentMVP.Services.FileSentEmailStore>();
+// Register SendGrid sender and a default HttpClient. The sender will use SendGrid when
+// SendGrid:ApiKey is present in configuration or environment; otherwise it will still
+// log to the sent-email store. For development the ConsoleEmailSender remains useful.
+if (!string.IsNullOrEmpty(builder.Configuration["SendGrid:ApiKey"]))
+{
+    builder.Services.AddHttpClient<CourseEnrollmentMVP.Services.SendGridEmailSender>();
+    builder.Services.AddScoped<CourseEnrollmentMVP.Services.IEmailSender, CourseEnrollmentMVP.Services.SendGridEmailSender>();
+}
+else
+{
+    builder.Services.AddSingleton<CourseEnrollmentMVP.Services.IEmailSender, CourseEnrollmentMVP.Services.ConsoleEmailSender>();
+}
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data Source=app.db"));
 

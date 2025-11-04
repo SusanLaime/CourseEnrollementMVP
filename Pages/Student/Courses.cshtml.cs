@@ -13,8 +13,13 @@ namespace CourseEnrollmentMVP.Pages.Student;
 public class CoursesModel : PageModel
 {
     private readonly AppDbContext _db;
+    private readonly CourseEnrollmentMVP.Services.IEmailSender _email;
 
-    public CoursesModel(AppDbContext db) => _db = db;
+    public CoursesModel(AppDbContext db, CourseEnrollmentMVP.Services.IEmailSender email)
+    {
+        _db = db;
+        _email = email;
+    }
 
     public List<Course> Courses { get; set; } = new();
     public List<string> Majors { get; set; } = new();
@@ -81,6 +86,22 @@ public class CoursesModel : PageModel
         };
         _db.Enrollments.Add(enrollment);
         await _db.SaveChangesAsync();
+
+        // Send pre-registration notification emails
+        var student = _db.Users.Find(uid);
+        var directors = _db.Users.Where(u => u.Role == "Director").ToList();
+
+        if (student != null)
+        {
+            var studentBody = $"Dear {student.Name},\n\nYour registration for '{course.Title}' has been received and is pending approval.\nCourse: {course.Title}\nSemester: {course.Semester}\n\nRegards\nCourse Enrollment System";
+            await _email.SendEmailAsync(student.Email, "Pre-registration received", studentBody);
+        }
+
+        foreach (var dir in directors)
+        {
+            var directorBody = $"Hello {dir.Name},\n\nStudent {student?.Name ?? "(unknown)"} has submitted a registration for '{course.Title}'.\nPlease review and approve or deny the request in the Director Dashboard.\n\nRegards\nCourse Enrollment System";
+            await _email.SendEmailAsync(dir.Email, "New pre-registration pending", directorBody);
+        }
 
         TempData["Success"] = "Registration submitted!";
         // After registration, show the student's registrations grouped by subject
